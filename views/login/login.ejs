@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: url('https://img.freepik.com/foto-gratis/nubes-al-estilo-anime_23-2151071781.jpg?w=1380&t=st=1726535322~exp=1726535922~hmac=b236f79745a1e60e146ed4e1834f683d3d56527f5c4a44674271e45313097018') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        .login-container {
+            background-color: rgba(255, 255, 255, 0.4); /* Transparencia del 40% */
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            padding: 40px;
+            width: 400px;
+            text-align: center;
+        }
+
+        .login-container img {
+            width: 100px;
+            margin-bottom: 20px;
+        }
+
+        .login-container h1 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #333;
+        }
+
+        .login-container input {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            background-color: rgba(255, 255, 255, 0.7); /* Transparencia en los inputs */
+        }
+
+        .login-container button {
+            width: 100%;
+            padding: 15px;
+            background-color: #4A90E2;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .login-container button:hover {
+            background-color: #9013FE;
+        }
+
+        .login-container p {
+            margin-top: 20px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .login-container p a {
+            color: #4A90E2;
+            text-decoration: none;
+        }
+
+        .login-container p a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div class="login-container">
+        <img src="https://www.pngmart.com/files/12/Itachi-Uchiha-Sharingan-PNG-Clipart.png" alt="Logo"> <!-- Cambia la URL por la de tu logo -->
+        <h1>Iniciar Sesión</h1>
+        <form id="iniciar-sesion">
+            <input type="email" name="email" placeholder="Correo electrónico" required>
+            <input type="password" name="password" placeholder="Contraseña" required>
+            <button type="submit">Entrar</button>
+        </form>
+        <p>¿Olvidaste tu contraseña? <a href="#">Recupérala aquí</a></p>
+    </div>
+
+    <script>
+        // jQuery para serializar los datos del formulario y enviarlos por POST
+        $('#iniciar-sesion').submit(function(event) {
+            event.preventDefault(); // Evita el envío normal del formulario
+
+            // Serializa los datos del formulario
+            var formData = $(this).serialize();
+
+            // Enviar los datos por AJAX
+            $.post('/iniciar-sesion', formData, function(response) {
+                if (response) {
+                    window.location.href = '/dashboard';
+                } else {
+                    alert('Error en la autenticación');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
